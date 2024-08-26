@@ -1,56 +1,37 @@
-Real-time programming with ROS 2
-================================
+Programación en tiempo real con ROS 2
+=====================================
 
-This is the repository for the `Real-time programming with ROS 2` workshop for
-ROScon 2023.
+Material para el workshop de Tiempo Real para la ROSCon España 2024.
 
-**Thank you to [Shuhao Wu](https://github.com/shuhaowu), [Jan Staschlat](https://github.com/janstaschulat), [Stephanie Eng](https://github.com/stephanie-eng) and [Oren Bell](https://github.com/nightduck) for putting together the excellent workshop. [Slides available here](https://docs.google.com/presentation/d/1yHaHiukJe-87RhiN8WIkncY23HxFkJynCQ8j3dIFx_w/edit#slide=id.p) ([backup link](https://github.com/ros-realtime/roscon-2023-realtime-workshop/blob/main/Realtime%20workshop%20ROScon%202023.pdf)). Thank you all for attending!**
+Este repositorio está basado en el [repositorio](https://github.com/ros-realtime/roscon-2023-realtime-workshop) del workshop `Real-time programming with ROS 2` del ROSCon 2023 de Nueva Orleans.
 
-Workshop setup for laptops
---------------------------
+**Gracias a [Shuhao Wu](https://github.com/shuhaowu), [Jan Staschlat](https://github.com/janstaschulat), [Stephanie Eng](https://github.com/stephanie-eng) and [Oren Bell](https://github.com/nightduck) for putting together the excellent workshop. [Traspas originales disponibles aquí](https://docs.google.com/presentation/d/1yHaHiukJe-87RhiN8WIkncY23HxFkJynCQ8j3dIFx_w/edit#slide=id.p) ([enlace de backup](https://github.com/ros-realtime/roscon-2023-realtime-workshop/blob/main/Realtime%20workshop%20ROScon%202023.pdf)).**
 
-To get the most out of the workshop, please complete the setup instructions for
-your laptop ahead of time. This will take about 10-20 minutes of your time and
-hopefully will make the workshop go significantly smoother. If you run into any
-problems, please [file an issue in this
-repository](https://github.com/ros-realtime/roscon-2023-realtime-workshop/issues).
+Configuración de taller para portátiles
+---------------------------------------
 
-### System requirements
+Para aprovechar al máximo el taller, completa las instrucciones de configuración para tu portátil con antelación. Esto tomará alrededor de 10-20 minutos de tu tiempo y, con suerte, hará que el taller se desarrolle mucho más suavemente. Si encuentras algún problema, por favor [informa de un problema en este repositorio](https://github.com/ros-realtime/roscon-2023-realtime-workshop/issues).
 
-The workshop code **only supports Linux**. Officially, we only test **Ubuntu
-22.04** as the laptop/development operating system. However, with the Docker
-setup described below, it may be possible to run this on other Linux variants,
-although this is untested.
+### Requisitos del sistema
 
-**A real-time kernel is not necessary**, although you may see decreased maximum
-latency numbers if you have a real-time kernel. For reference, the workshop code
-is developed on regular Ubuntu kernels.
+El código del taller **solo es compatible con Linux**. Oficialmente, solo probamos **Ubuntu 22.04 o Ubuntu 24.04** como sistema operativo de la portátil/desarrollo. Sin embargo, con la configuración de Docker descrita a continuación, podría ser posible ejecutarlo en otras variantes de Linux, aunque esto no ha sido probado.
 
-**Docker for Mac and Docker for Windows are not supported. Please try to bring a
-Linux laptop to the workshop for best results.**. It is possible that a virtual
-machine running on Linux may work for you, although this is also not supported.
+**No es necesario un kernel en tiempo real**, aunque es posible que veas cifras de latencia máxima más bajas si tienes un kernel en tiempo real. Como referencia, el código del taller se desarrolla en kernels regulares de Ubuntu.
 
-**Podman is not supported**. It might work, but we have not tested the Docker
-setup below with Podman.
+**Docker para Mac y Docker para Windows no son compatibles. Por favor, intenta traer una portátil con Linux al taller para obtener los mejores resultados.** Es posible que una máquina virtual que se ejecute en Linux funcione para ti, aunque esto tampoco es compatible.
 
-The code is tested on both `amd64` and `arm64` (via the Raspberry Pi 4). No
-tests are made against the M1/M2 Macbooks.
+**Podman no es compatible**. Podría funcionar, pero no hemos probado la configuración de Docker a continuación con Podman.
 
-### Using Docker
+El código se ha probado en `amd64` y `arm64` (a través del Raspberry Pi 4). No se han realizado pruebas en Macbooks M1/M2.
 
-The simplest way to run the workshop code is to use the workshop-specific Docker
-image. To get the Docker image, there are two options: (1) getting the image
-before the workshop **(highly recommended)**, or (2) getting the image during
-the workshop (we cannot guarantee this experience will be good due to
-constraints of networking during a conference).
+### Uso de Docker
 
-Before getting the image, you must install Docker Engine on your Linux machine.
-Please follow the [Docker Engine installation instructions][docker-install].
-**Ensure you do not use Docker Desktop as that is not supported due to its use
-of a virtual machine**. At the end, you should confirm that you see the
-following output when running the following commands:
+La forma más sencilla de ejecutar el código del taller es utilizando la imagen de Docker específica para el taller. Para obtener la imagen de Docker, hay dos opciones: (1) obtener la imagen antes del taller **(altamente recomendado)**, o (2) obtener la imagen durante el taller (no podemos garantizar que esta experiencia sea buena debido a las limitaciones de la red durante una conferencia).
 
-```console
+Antes de obtener la imagen, debes instalar Docker Engine en tu máquina Linux. Por favor, sigue las [instrucciones de instalación de Docker Engine][docker-install]. **Asegúrate de no usar Docker Desktop, ya que no es compatible debido a su uso de una máquina virtual**. Al final, debes confirmar que ves la siguiente salida al ejecutar los siguientes comandos:
+
+```
+console
 $ docker version | grep -A2 Client
 Client: Docker Engine - Community
  Version:           24.0.6
@@ -62,51 +43,44 @@ Server: Docker Engine - Community
   Version:          24.0.6
 ```
 
-The exact version of Docker may be different than the above output.
+La versión exacta de Docker puede ser diferente de la salida anterior.
 
-You must also install Docker such that you can manage docker without root. [See the instruction here for details](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
+También debes instalar Docker de manera que puedas gestionar Docker sin necesidad de usar root. [Consulta las instrucciones aquí para obtener detalles](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
 
 [docker-install]: https://docs.docker.com/engine/install/ubuntu/
 
-### Getting the image BEFORE the workshop
+### Obtener la imagen ANTES del taller
 
-1. Download the image file from [the latest release](https://github.com/ros-realtime/roscon-2023-realtime-workshop/releases/latest). The file is called `docker-image.tar.gz`.
-2. Clone the [roscon-2023-realtime-workshop](https://github.com/ros-realtime/roscon-2023-realtime-workshop) repository with `--recursive` option: `git clone --recursive https://github.com/ros-realtime/roscon-2023-realtime-workshop.git`.
-3. `cd` into the `roscon-2023-realtime-workshop` repository.
-4. `docker/fetch ~/Downloads/docker-image.tar.gz`.
+1. Descarga el archivo de imagen desde [la última versión](https://github.com/ros-realtime/roscon-2023-realtime-workshop/releases/latest). El archivo se llama `docker-image.tar.gz`.
+2. Clona el repositorio [roscon-2023-realtime-workshop](https://github.com/fmrico/roscon-2023-realtime-workshop) con la opción `--recursive`: `git clone --recursive https://github.com/fmrico/roscon-2023-realtime-workshop.git`.
+3. Accede al repositorio `roscon-es-2024-realtime-workshop`.
+4. Ejecuta `docker/fetch ~/Downloads/docker-image.tar.gz`.
 
-This should import the Docker image with a name of `roscon-2023-realtime-workshop`.
+Esto debería importar la imagen de Docker con el nombre `roscon-2023-realtime-workshop`.
 
-Note: do **NOT** use `docker import` or `docker load`. Please use the
-`docker/fetch` script above.
+Nota: **NO** utilices `docker import` o `docker load`. Por favor, usa el script `docker/fetch` mencionado anteriormente.
 
-### Starting the Docker container
+### Iniciar el contenedor Docker
 
-**If you would like to use VS Code and its dev container system, you can skip this section and go directly to [Using Visual Studio Code](#using-visual-studio-code).**
+**Si te gustaría usar VS Code y su sistema de contenedores de desarrollo, puedes saltarte esta sección e ir directamente a [Usar Visual Studio Code](#usar-visual-studio-code).**
 
-After importing the Docker image, you can start the Docker container via the
-special shell file [`docker/start`](docker/start):
+Después de importar la imagen de Docker, puedes iniciar el contenedor Docker a través del archivo shell especial [`docker/start`](docker/start):
 
-1. `cd` into this repository.
-2. `docker/start`
+1. Accede a este repositorio.
+2. Ejecuta `docker/start`.
 
-This should start the Docker container and it will mount this repository into the
-`/code` directory inside the container. As a result, changes to the repository
-in the host will be reflected in the container.
+Esto debería iniciar el contenedor Docker y montará este repositorio en el directorio `/code` dentro del contenedor. Como resultado, los cambios en el repositorio en el host se reflejarán en el contenedor.
 
-This should start the Docker container with all of the appropriate privileges to
-run real-time-scheduled applications. It also setup the container with
-everything needed to run GUI programs.
+Esto debería iniciar el contenedor Docker con todos los privilegios adecuados para ejecutar aplicaciones programadas en tiempo real. También configura el contenedor con todo lo necesario para ejecutar programas GUI.
 
-### Log into the Docker container
+### Iniciar sesión en el contenedor Docker
 
-After starting the Docker container, you can login to the Docker container using
-the special [`docker/shell`](docker/shell) script:
+Después de iniciar el contenedor Docker, puedes iniciar sesión en el contenedor Docker utilizando el script especial [`docker/shell`](docker/shell):
 
-1. `cd` into this repository.
-2. `docker/shell`
+1. Accede a este repositorio.
+2. Ejecuta `docker/shell`.
 
-You should be greeted with something like the following:
+Deberías ser recibido con algo como lo siguiente:
 
 ```
 To run a command as administrator (user "root"), use "sudo <command>".
@@ -115,25 +89,23 @@ See "man sudo_root" for details.
 user@6896a5d8dd84:/code$
 ```
 
-This script logs you into an user named `user` which has the same UID and GID as
-your host user. This eliminates some of the permission errors you may encounter
-with using Docker. It also allows you to run GUI programs.
+Este script te inicia sesión como un usuario llamado `user` que tiene el mismo UID y GID que el usuario de tu host. Esto elimina algunos de los errores de permisos que podrías encontrar al usar Docker. También te permite ejecutar programas GUI.
 
-### Checking everything works
+### Comprobar que todo funciona
 
-After logging into the Docker container, you should check everything works:
+Después de iniciar sesión en el contenedor Docker, deberías comprobar que todo funciona:
 
-**Check the trace viewer tools are available**
+**Verificar que las herramientas de visualización de trazas están disponibles**
 
-1. After starting the Docker container, open a browser.
-2. Navigate to http://localhost:3100.
-3. Ensure a webpage like the following screenshot loads up.
+1. Después de iniciar el contenedor Docker, abre un navegador.
+2. Navega a http://localhost:3100.
+3. Asegúrate de que se carga una página web como la siguiente captura de pantalla.
 
 ![](imgs/perfetto.png)
 
-**Make sure all exercises compile and exercise 1 runs**
+**Asegúrate de que todos los ejercicios se compilan y que el ejercicio 1 se ejecuta**
 
-After logging into the Docker container:
+Después de iniciar sesión en el contenedor Docker:
 
 ```console
 $ cd /code/exercise1 && colcon build
@@ -145,8 +117,8 @@ $ cd /code/exercise4-1 && colcon build
 $ cd /code/exercise4-2 && colcon build
 ```
 
-Make sure these all build. Then make sure at least exercise 1 runs (which takes
-10 seconds):
+Asegúrate de que todo esto se compila. Luego, asegúrate de que al menos el ejercicio 1 se ejecuta (lo que toma 10 segundos):
+
 
 ```console
 $ cd /code/exercise1
@@ -155,131 +127,97 @@ Testing latency for 10 seconds with 2 threads...
 Latency testing complete. Trace file available at: exercise1.perfetto
 ```
 
-You can load the `exercise1.perfetto` file in the trace viewer that you checked
-above and see some data being plotted.
+Puedes cargar el archivo `exercise1.perfetto` en el visor de trazas que verificaste anteriormente y ver algunos datos siendo graficados.
 
-**Check rviz2 is working**
+**Verifica que rviz2 está funcionando**
 
-After logging into the Docker container, run:
+Después de iniciar sesión en el contenedor Docker, ejecuta:
 
 ```console
 $ rviz2
 ```
 
-The usual rviz2 GUI window should show up if all is well.
+La ventana GUI habitual de rviz2 debería aparecer si todo está bien.
 
-### Using Visual Studio Code
+### Usar Visual Studio Code
 
-If you like to use VS code for development, you must install the [Remote Development Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack), which enables the dev container system.
+Si te gusta usar VS Code para el desarrollo, debes instalar el [Remote Development Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack), que habilita el sistema de contenedores de desarrollo.
 
-This repository contains a [`.devcontainer`](.devcontainer) setup. This setup
-relies on the image imported above using the `docker/fetch` script. So if you
-haven't performed the [image import
-step](#getting-the-image-before-the-workshop), launching VS
-code with dev containers will not work as it will fail to find the image.
+Este repositorio contiene una configuración [`.devcontainer`](.devcontainer). Esta configuración depende de la imagen importada anteriormente utilizando el script `docker/fetch`. Por lo tanto, si no has realizado el [paso de importación de la imagen](#getting-the-image-before-the-workshop), iniciar VS Code con contenedores de desarrollo no funcionará, ya que fallará al intentar encontrar la imagen.
 
-Once you [imported the image](#getting-the-image-before-the-workshop), you can simply open VS code with dev containers in this repository. You can use the VS code terminal or use the `.devcontainer/shell` script to login to the container. All above features should work and you should check.
+Una vez que [hayas importado la imagen](#getting-the-image-before-the-workshop), simplemente puedes abrir VS Code con contenedores de desarrollo en este repositorio. Puedes usar la terminal de VS Code o usar el script `.devcontainer/shell` para iniciar sesión en el contenedor. Todas las funciones mencionadas anteriormente deberían funcionar y deberías verificarlas.
 
-**Getting IntelliSense to work**
+**Hacer que IntelliSense funcione**
 
-To get IntelliSense to work with the C++ extension, you must select the appropriate build configuration for each exercise with the button on the bottom right side of your status bar, as indicated by the following screenshot:
+Para hacer que IntelliSense funcione con la extensión de C++, debes seleccionar la configuración de compilación adecuada para cada ejercicio con el botón en la parte inferior derecha de tu barra de estado, como se indica en la siguiente captura de pantalla:
 
 ![](imgs/vscode.png)
 
-You also have to build the code for that exercise at least once via `colcon build`. Sometimes, a Reload Window command is needed (CTRL+P -> `Developer: Reload Window`) to make IntelliSense work fully.
+También debes compilar el código para ese ejercicio al menos una vez usando `colcon build`. A veces, es necesario un comando para recargar la ventana (CTRL+P -> `Developer: Reload Window`) para que IntelliSense funcione completamente.
 
-Workshop setup for the Raspberry Pi 4
--------------------------------------
+Configuración del taller para el Raspberry Pi 4
+-----------------------------------------------
 
-We will have a limited number of Raspberry Pi 4s to loan to attendees. We
-expect people to form groups of 3-5 to work on problems together. That said, we
-welcome you to bring your own Raspberry Pi 4s as well. We recommend the
-following hardware:
+**(Nota: En la ROSCon España 2024 de Sevilla el soporte que ofrecemos en esta parte está muy limitado)**
 
-- A Raspberry Pi 4 (4GB+ is recommended, 2GB may be OK)
-- An Ethernet cable and any necessary USB Ethernet adapters to connect the Raspberry Pi directly to your laptop
-- A microSD card with greater than 8GB
-- The Raspberry Pi 4 power supply with USA power plugs
+Tendremos un número limitado de Raspberry Pi 4 para prestar a los asistentes. Esperamos que la gente forme grupos de 3-5 personas para trabajar juntos en los problemas. Dicho esto, también te invitamos a traer tus propios Raspberry Pi 4. Recomendamos el siguiente hardware:
 
-### Before the workshop: flashing the image
+- Un Raspberry Pi 4 (se recomienda 4GB o más, 2GB puede ser suficiente)
+- Un cable Ethernet y cualquier adaptador USB Ethernet necesario para conectar el Raspberry Pi directamente a tu portátil
+- Una tarjeta microSD con más de 8GB
+- La fuente de alimentación del Raspberry Pi 4 con enchufes de alimentación de EE.UU.
 
-A specially-crafted image designed for the workshop must be flashed to the SD
-card. This image contains an Ubuntu 22.04 installation with ROS 2 humble and a
-real-time kernel which is based on [the Raspberry Pi 4 image maintained by the
-ROS 2 real-time working group](https://github.com/ros-realtime/ros-realtime-rpi4-image).
-It has the code of the exercises builtin and has all of the dependencies
-installed, to ensure the experience can be had entirely offline. It also
-contains a number of helper utilities designed to make it easier for attendees
-for the workshop.
+### Antes del taller: flasheo de la imagen
 
-To download the image, go to the [latest
-release](https://github.com/ros-realtime/roscon-2023-realtime-workshop/releases/latest).
-Download the `roscon2023-rt-workshop-rpi4-ubuntu-22.04.1-ros2-humble.img.zst`.
-This is a [zstd-compressed](https://en.wikipedia.org/wiki/Zstd) file to save
-space. You should be able to double click it and extract the image file.
-Alternatively, you can use the command:
+Se debe flashear una imagen especialmente diseñada para el taller en la tarjeta SD. Esta imagen contiene una instalación de Ubuntu 22.04 con ROS 2 humble y un kernel en tiempo real que se basa en [la imagen de Raspberry Pi 4 mantenida por el grupo de trabajo en tiempo real de ROS 2](https://github.com/ros-realtime/ros-realtime-rpi4-image). Tiene el código de los ejercicios incorporado y todas las dependencias instaladas, para asegurar que la experiencia pueda realizarse completamente offline. También contiene una serie de utilidades que facilitan la participación de los asistentes en el taller.
+
+Para descargar la imagen, ve a la [última versión](https://github.com/ros-realtime/roscon-2023-realtime-workshop/releases/latest). Descarga el archivo `roscon2023-rt-workshop-rpi4-ubuntu-22.04.1-ros2-humble.img.zst`. Este es un archivo [comprimido con zstd](https://en.wikipedia.org/wiki/Zstd) para ahorrar espacio. Deberías poder hacer doble clic en él y extraer el archivo de imagen. Alternativamente, puedes usar el comando:
 
 ```
 $ unzstd roscon2023-rt-workshop-rpi4-ubuntu-22.04.1-ros2-humble.img.zst
 ```
 
-Locate a microSD card with greater than 16GB of storage and use
-[Etcher](https://etcher.balena.io/) to flash the resulting image file to your
-microSD card.
+Ubica una tarjeta microSD con más de 16GB de almacenamiento y usa [Etcher](https://etcher.balena.io/) para flashear el archivo de imagen resultante en tu tarjeta microSD.
 
-#### Directly flashing the image in one command
+#### Flashear la imagen directamente con un solo comando
 
-Alternatively, you can also use the command:
+Alternativamente, también puedes usar el comando:
 
 ```
 $ unzstd roscon2023-rt-workshop-rpi4-ubuntu-22.04.1-ros2-humble.img.zst --stdout | sudo dd of=/dev/sdX bs=16M conv=fdatasync oflag=direct
 ```
 
-Please replace the `/dev/sdX` with the appropriate device.
+Por favor, reemplaza `/dev/sdX` con el dispositivo correspondiente.
 
-### Starting and connecting to the Raspberry Pi 4
+### Iniciar y conectar el Raspberry Pi 4
 
-Start the Raspberry Pi normally. You do not need to attach a monitor or a
-keyboard. To connect to the Raspberry Pi:
+Inicia el Raspberry Pi normalmente. No necesitas conectar un monitor o un teclado. Para conectarte al Raspberry Pi:
 
-1. Connect the Ethernet to the Raspberry Pi 4's only Ethernet port.
-2. Connect the other end of the Ethernet to your laptop. You may have to do this via an USB Ethernet adapter if you do not have an Ethernet port directly on your laptop.
-3. Wait briefly for the Raspberry Pi 4 to boot up and your laptop to connect to the network. This may take a few minutes on first boot.
-4. Once connected, the Raspberry Pi 4 is accessible at the IP address `192.168.10.1`.
-5. You can `ssh ubuntu@192.168.10.1`. The password is **`ubuntu`**.
-6. The code for the exercises is located in the `/code` path.`
+1. Conecta el cable Ethernet al único puerto Ethernet del Raspberry Pi 4.
+2. Conecta el otro extremo del cable Ethernet a tu portátil. Es posible que necesites hacer esto a través de un adaptador USB Ethernet si tu portátil no tiene un puerto Ethernet.
+3. Espera un momento para que el Raspberry Pi 4 arranque y tu portátil se conecte a la red. Esto puede tardar unos minutos en el primer arranque.
+4. Una vez conectado, el Raspberry Pi 4 es accesible en la dirección IP `192.168.10.1`.
+5. Puedes conectarte con `ssh ubuntu@192.168.10.1`. La contraseña es **`ubuntu`**.
+6. El código para los ejercicios se encuentra en la ruta `/code`.
 
-### Run the pre-built exercise 1
+### Ejecutar el ejercicio 1 precompilado
 
-The image contains not only the source code, but also pre-built binaries for
-all the exercises. This is to reduce the amount of time needed to build during
-the workshop. Please check this is working by running exercise 1:
+La imagen no solo contiene el código fuente, sino también los binarios precompilados para todos los ejercicios. Esto es para reducir el tiempo necesario para compilar durante el taller. Por favor, verifica que esto funciona ejecutando el ejercicio 1:
 
-1. Log in to the Raspberry Pi using the instructions above.
+1. Inicia sesión en el Raspberry Pi siguiendo las instrucciones anteriores.
 2. `cd /code/exercise1`
 3. `./run.sh`
 
-You may see warnings about loop overruns. This is expected as part of the
-exercise is to resolve this. 
+Es posible que veas advertencias sobre bucles excedidos. Esto es esperado, ya que parte del ejercicio consiste en resolver esto.
 
-This program will generate a trace file located at
-`/code/exercise1/exercise1.perfetto`. You can download it via `scp` or use the
-browser as documented below.
+Este programa generará un archivo de trazas ubicado en `/code/exercise1/exercise1.perfetto`. Puedes descargarlo vía `scp` o usar el navegador como se documenta a continuación.
 
-### Connect to the Raspberry Pi 4's builtin HTTP server to download files
+### Conectar al servidor HTTP incorporado del Raspberry Pi 4 para descargar archivos
 
-The image contains a built-in HTTP server where you can browse the `/code`
-directory located on the Pi. This allows you to more easily download trace
-files, which we will do during the workshop. Please check this is working ahead
-of time:
+La imagen contiene un servidor HTTP incorporado donde puedes explorar el directorio `/code` ubicado en el Pi. Esto te permite descargar archivos de trazas más fácilmente, lo cual haremos durante el taller. Por favor, verifica que esto está funcionando antes del taller:
 
-1. With Ethernet connected to the Raspberry Pi, go to
-   http://192.168.10.1/repo/.
-2. Click into `exercise1` and download `exercise1.perfetto` (this will only
-   exists if you ran exercise 1 as instructed in the above section).
-3. Go to http://192.168.10.1/perfetto/
-4. On the top left of the screen, click `Open trace file` and open the
-   `exercise1.perfetto` file you just downloaded.
-5. A timeline view should show up. You can press `W` on your keyboard to zoom
-   in. Press `?` to get help on how to use the interface if you would like to
-   explore further.
+1. Con el Ethernet conectado al Raspberry Pi, ve a http://192.168.10.1/repo/.
+2. Haz clic en `exercise1` y descarga `exercise1.perfetto` (esto solo existirá si ejecutaste el ejercicio 1 como se indicó en la sección anterior).
+3. Ve a http://192.168.10.1/perfetto/
+4. En la parte superior izquierda de la pantalla, haz clic en `Open trace file` y abre el archivo `exercise1.perfetto` que acabas de descargar.
+5. Debería aparecer una vista de línea de tiempo. Puedes presionar `W` en tu teclado para hacer zoom. Presiona `?` para obtener ayuda sobre cómo usar la interfaz si deseas explorar más a fondo.

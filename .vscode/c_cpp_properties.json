@@ -2,7 +2,7 @@
   "configurations": [
     {
       "includePath": [
-        "/opt/ros/humble/include/**",
+        "/opt/ros/jazzy/include/**",
         "/usr/include/**"
       ],
       "name": "Exercise 1",

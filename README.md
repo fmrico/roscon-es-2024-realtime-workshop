@@ -1,6 +1,9 @@
 Programación en tiempo real con ROS 2
 =====================================
 
+https://drive.google.com/file/d/1BYhvhYMjCbNKxAXMiC3thD2o3NLYLLGO/view?usp=sharing
+
+
 Material para el workshop de Tiempo Real para la ROSCon España 2024.
 
 Este repositorio está basado en el [repositorio](https://github.com/ros-realtime/roscon-2023-realtime-workshop) del workshop `Real-time programming with ROS 2` del ROSCon 2023 de Nueva Orleans.

@@ -1,6 +1,9 @@
 Programación en tiempo real con ROS 2
 =====================================
 
+https://drive.google.com/file/d/1BYhvhYMjCbNKxAXMiC3thD2o3NLYLLGO/view?usp=sharing
+
+
 Material para el workshop de Tiempo Real para la ROSCon España 2024.
 
 Este repositorio está basado en el [repositorio](https://github.com/ros-realtime/roscon-2023-realtime-workshop) del workshop `Real-time programming with ROS 2` del ROSCon 2023 de Nueva Orleans.
@@ -52,7 +55,7 @@ También debes instalar Docker de manera que puedas gestionar Docker sin necesid
 ### Obtener la imagen ANTES del taller
 
 1. Descarga el archivo de imagen desde [la última versión](https://github.com/ros-realtime/roscon-2023-realtime-workshop/releases/latest). El archivo se llama `docker-image.tar.gz`.
-2. Clona el repositorio [roscon-2024-realtime-workshop](https://github.com/fmrico/roscon-2024-realtime-workshop) con la opción `--recursive`: `git clone --recursive https://github.com/fmrico/roscon-2024-realtime-workshop.git`.
+2. Clona el repositorio [roscon-es-2024-realtime-workshop](https://github.com/fmrico/roscon-es-2024-realtime-workshop) con la opción `--recursive`: `git clone --recursive https://github.com/fmrico/roscon-es-2024-realtime-workshop.git`.
 3. Accede al repositorio `roscon-es-2024-realtime-workshop`.
 4. Ejecuta `docker/fetch ~/Downloads/docker-image.tar.gz`.
 
